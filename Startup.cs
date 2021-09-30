@@ -21,6 +21,11 @@ namespace dw.UserService
         {
             services.AddDiscoveryClient(Configuration);
             services.AddControllers();
+            services.AddCors(options=>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                     builder => builder.AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +38,7 @@ namespace dw.UserService
 
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors("AllowAllOrigins");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
