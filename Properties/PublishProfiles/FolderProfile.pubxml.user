@@ -3,4 +3,8 @@
 https://go.microsoft.com/fwlink/?LinkID=208121. 
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>E:\Proyectos-umg\CA_DW2021-NET-CORE\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
+    <History>True|2021-09-30T03:12:35.9921094Z;</History>
+  </PropertyGroup>
 </Project>
