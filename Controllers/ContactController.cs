@@ -19,7 +19,7 @@ namespace dw.UserService.Controllers
         {
             using (DWContext context = new DWContext())
             {
-                return context.Contactos.Where(x => x.IdUsuario == idUsuario).Select(contacto =>
+                return context.Contactos.Where(x => x.IdUsuario == idUsuario).OrderBy(x=> x.Nombres).ThenBy(x=> x.Apellidos).Select(contacto =>
                   new ContactDto()
                   {
                       Apellidos = contacto.Apellidos,

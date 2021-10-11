@@ -24,7 +24,7 @@ namespace dw.UserService
             services.AddCors(options=>
             {
                 options.AddPolicy("AllowAllOrigins",
-                     builder => builder.AllowAnyOrigin());
+                     builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
         }
 
