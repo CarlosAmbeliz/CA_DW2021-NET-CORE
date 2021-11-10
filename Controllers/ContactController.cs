@@ -2,6 +2,7 @@
 using dw.UserService.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,13 @@ namespace dw.UserService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ContactController : ControllerBase
     {
 
+        
         [HttpGet("authorization")]
-        [Authorize(Roles = "Administrators")]
+        [Authorize(Policy = "Admin")]
         [Route("getall")]
         public List<ContactDto> GetAll(long idUsuario)
         {

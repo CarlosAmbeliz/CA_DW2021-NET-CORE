@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using Steeltoe.Discovery.Client;
+using System.Security.Claims;
 
 namespace dw.UserService
 {
@@ -63,12 +64,14 @@ namespace dw.UserService
                 };
                 o.RequireHttpsMetadata = false;
                 o.SaveToken = true;
-                o.ForwardSignOut = "/SingOut";
                 o.Validate();
             });
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Administrators", policy => policy.RequireClaim("user_roles", "Administrators"));
+                var myRoles = new string[] { "Administrators" };
+                options.AddPolicy("Admin", policy => policy.RequireClaim("user_roles", myRoles));
+                //options.AddPolicy("Administrator", policy => policy.RequireClaim("user_roles", "[Administrators]"));
+                //options.AddPolicy("Administrators", policy => policy.RequireClaim("user_roles"));
             });
         }
 
