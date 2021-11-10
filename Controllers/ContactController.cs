@@ -17,7 +17,7 @@ namespace dw.UserService.Controllers
     {
 
         [HttpGet("authorization")]
-        [Authorize(Roles = "Administrators")]
+        //[Authorize(Roles = "Administrators")]
         [Route("getall")]
         public List<ContactDto> GetAll(long idUsuario)
         {
