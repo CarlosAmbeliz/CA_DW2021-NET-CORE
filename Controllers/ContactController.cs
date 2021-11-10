@@ -1,5 +1,6 @@
 ﻿using dw.UserService.Controllers.Dto;
 using dw.UserService.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,9 +12,12 @@ namespace dw.UserService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ContactController : ControllerBase
     {
-        [HttpGet]
+
+        [HttpGet("authorization")]
+        [Authorize(Roles = "Administrators")]
         [Route("getall")]
         public List<ContactDto> GetAll(long idUsuario)
         {
