@@ -30,8 +30,8 @@ namespace dw.UserService
             services.AddControllers();
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAllOrigins",
-                     builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+                ////options.AddPolicy("AllowAllOrigins",
+                //builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().);
             });
             services.AddAuthentication(options =>
             {
@@ -83,11 +83,18 @@ namespace dw.UserService
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            app.UseCors(
+                options => 
+                options.WithOrigins("http://localhost:8080", "https://localhost:8080", "http://localhost:9900", "https://localhost:9900", "http://localhost:4200", "https://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
+            //app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors("AllowAllOrigins");
+            //app.UseCors("AllowAllOrigins");
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
